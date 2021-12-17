@@ -6,14 +6,20 @@ import openpyxl
 import scatter
 
 times = ("00:00:00", "03:00:00", "03:00:01", "09:00:15", "02:59:12", "23:59:59")
+data1 = [[datetime.datetime.fromisoformat(f"2021-04-20 {t}.000000"), i] for i, t in enumerate(times)]
+df1 = pd.DataFrame(data1, columns=['date', 'value'])
 
-data = [[datetime.datetime.fromisoformat(f"2021-04-20 {t}.000000"), i] for i, t in enumerate(times)]
+times = ("09:12:03", "02:14:50", "20:00:01", "22:33:15")
+data2 = [[datetime.datetime.fromisoformat(f"2021-04-20 {t}.000000"), i+3] for i, t in enumerate(times)]
+df2 = pd.DataFrame(data2, columns=['date', 'value'])
 
-df = pd.DataFrame(data, columns=['date', 'value'])
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(9, 6))
 
-fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(9, 6))
+#scatter.ax_plot(ax, df1['date'].to_list(), df1['value'].to_list(), "a")
+#scatter.ax_plot(ax, df2['date'].to_list(), df2['value'].to_list(), "b")
 
-scatter.plot(df, axes)
+scatter.df_plot(df1, ax, 'date', 'value', "a")
+scatter.df_plot(df2, ax, 'date', 'value', "b")
 
 wb = openpyxl.Workbook()
 ws = wb.active
