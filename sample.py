@@ -7,8 +7,7 @@ import scatter
 
 import matplotlib
  
-fonts = set([f.name for f in matplotlib.font_manager.fontManager.ttflist])
-print(fonts)
+plt.rcParams['font.family'] = "MS Gothic"
 
 times = ("00:00:00", "03:00:00", "03:00:01", "09:00:15", "02:59:12", "23:59:59")
 data1 = [[datetime.datetime.fromisoformat(f"2021-04-20 {t}.000000"), i] for i, t in enumerate(times)]
